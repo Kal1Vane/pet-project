@@ -1,9 +1,9 @@
 # Pet Project
 
 Стэк используемых технологий: 
-*React
-*React Hooks
-*MaterialUI 
+* React
+* React Hooks
+* MaterialUI 
 
 # Руководство по работе с проектом
 
