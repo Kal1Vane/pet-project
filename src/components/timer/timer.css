@@ -1,0 +1,30 @@
+.timer-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.timer-container {
+  display: flex;
+  gap: 20px;
+}
+.timer-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-transform: uppercase ;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.timer-title {
+  font-size: 48px;
+  color: #fff;
+  line-height: 140px;
+  text-shadow: 1px 1px 1px rgba(233, 5, 5, 0.938);
+}
+.timer-subtitle{
+  font-size: 28px;
+  color: #fff;
+  text-shadow: 1px 1px 1px rgba(233, 5, 5, 0.938);
+ }

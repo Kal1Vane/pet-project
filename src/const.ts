@@ -24,3 +24,16 @@ export enum HappyDay {
   'Valentine Day' = AppRoute.Valentayne,
   'New Year' = AppRoute.NewYear,
 }
+
+
+export enum DataDay {
+  Summer = '06-01',
+  Valentayne = '02-14',
+  NewYear = '12-31',
+}
+
+
+export const formatNumber = (num:number) => num.toLocaleString('en-US', {
+  minimumIntegerDigits: 2,
+  useGrouping: false,
+});

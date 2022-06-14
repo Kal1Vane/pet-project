@@ -1,9 +1,9 @@
-import { Fragment } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import CustomScreen from '../custom/custom-screen';
 import Header from '../header/header';
 import Main from '../main/main';
+import TimerScreen from '../timer-screen/timer-screen';
 
 
 function App(): JSX.Element {
@@ -14,15 +14,15 @@ function App(): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Summer}
-          element={<Fragment> You clicked summer</Fragment>}
+          element={<TimerScreen />}
         />
         <Route
           path={AppRoute.Valentayne}
-          element={<Fragment>You clicked valentayne Day</Fragment>}
+          element={<TimerScreen />}
         />
         <Route
           path={AppRoute.NewYear}
-          element={<Fragment>You clicked new Year</Fragment>}
+          element={<TimerScreen />}
         />
         <Route
           path={AppRoute.CustomData}
