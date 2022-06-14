@@ -4,7 +4,10 @@ import { useEffect, useState } from 'react';
 import { DataDay, formatNumber } from '../../const';
 import './timer.css';
 
-function Timer (data: DataDay):JSX.Element {
+type TimerProps = {
+  data : DataDay,
+}
+function Timer (data: TimerProps):JSX.Element {
   const [mounth,setMounth] = useState<number>(0);
   const [days,setDays] = useState<number>(0);
   const [hours,setHours] = useState<number>(0);
