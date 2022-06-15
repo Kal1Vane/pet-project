@@ -5,9 +5,12 @@ import { DataDay, formatNumber } from '../../const';
 import './timer.css';
 
 type TimerProps = {
-  data : DataDay,
+  data : DataDay | string,
+  isCustomDate : boolean,
 }
-function Timer (data: TimerProps):JSX.Element {
+function Timer (props: TimerProps):JSX.Element {
+  const {data,isCustomDate} = props;
+
   const [year,setYear] = useState<number>(0);
   const [mounth,setMounth] = useState<number>(0);
   const [days,setDays] = useState<number>(0);
@@ -19,7 +22,7 @@ function Timer (data: TimerProps):JSX.Element {
   useEffect(() => {
     longTimerUpdate();
     setLoading(false);
-  },[]);
+  },[data]);
 
   useEffect(() => {
     const interval = setInterval(timerUpdatePerSecond,1000);
@@ -28,14 +31,21 @@ function Timer (data: TimerProps):JSX.Element {
 
   function longTimerUpdate(){
     const nowDate = dayjs();
+    let howLongToDate,timeSeconds;
 
-    let howLongToDate = dayjs(`${dayjs().get('year')}-${data.data}`);
-
-    let timeSeconds = howLongToDate.diff(nowDate,'seconds');
-    if (timeSeconds < 0){
-      howLongToDate = dayjs(`${dayjs().get('year') + 1}-${data.data}`);
+    if(isCustomDate){
+      howLongToDate = dayjs(data);
       timeSeconds = howLongToDate.diff(nowDate,'seconds');
-      setYear(1);
+      setYear(howLongToDate.diff(nowDate,'year'));
+    } else {
+      howLongToDate = dayjs(`${dayjs().get('year')}-${data}`);
+      timeSeconds = howLongToDate.diff(nowDate,'seconds');
+    }
+
+    if (timeSeconds < 0){
+      howLongToDate = dayjs(`${dayjs().get('year') + 1}-${data}`);
+      timeSeconds = howLongToDate.diff(nowDate,'seconds');
+      setYear(howLongToDate.diff(nowDate,'year'));
     }
 
     setMounth(howLongToDate.diff(nowDate,'month'));
