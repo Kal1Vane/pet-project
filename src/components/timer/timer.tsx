@@ -1,4 +1,4 @@
-import {  Skeleton } from '@mui/material';
+import {  CircularProgress } from '@mui/material';
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
 import { DataDay, formatNumber } from '../../const';
@@ -8,14 +8,17 @@ type TimerProps = {
   data : DataDay,
 }
 function Timer (data: TimerProps):JSX.Element {
+  const [year,setYear] = useState<number>(0);
   const [mounth,setMounth] = useState<number>(0);
   const [days,setDays] = useState<number>(0);
   const [hours,setHours] = useState<number>(0);
   const [minutes,setMinutes] = useState<number>(0);
   const [seconds,setSeconds] = useState<number>(0);
+  const [isLoading,setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    longNewYear();
+    longTimerUpdate();
+    setLoading(false);
   },[]);
 
   useEffect(() => {
@@ -23,18 +26,20 @@ function Timer (data: TimerProps):JSX.Element {
     return () => clearInterval(interval);
   },[seconds]);
 
-  function longNewYear(){
+  function longTimerUpdate(){
     const nowDate = dayjs();
 
-    const howLongToDate = dayjs(`${dayjs().get('year')}-${data.data}`);
+    let howLongToDate = dayjs(`${dayjs().get('year')}-${data.data}`);
 
-    const timeSeconds = howLongToDate.diff(nowDate,'seconds');
-    const timeMinutes =  Math.floor(timeSeconds / 60);
-    const timeHourse = Math.floor(timeMinutes / 60);
-    const timeDays = Math.floor(timeHourse / 24);
+    let timeSeconds = howLongToDate.diff(nowDate,'seconds');
+    if (timeSeconds < 0){
+      howLongToDate = dayjs(`${dayjs().get('year') + 1}-${data.data}`);
+      timeSeconds = howLongToDate.diff(nowDate,'seconds');
+      setYear(1);
+    }
 
-    setMounth(Math.floor(timeDays / 30));
-    setDays(Math.floor(timeDays));
+    setMounth(howLongToDate.diff(nowDate,'month'));
+    setDays(howLongToDate.diff(nowDate,'day'));
     setHours(24 - nowDate.get('hours'));
     setMinutes(60 - nowDate.get('minute'));
     setSeconds(60 - nowDate.get('seconds'));
@@ -48,38 +53,50 @@ function Timer (data: TimerProps):JSX.Element {
       setSeconds((prev) => prev - 1);
     }
   }
+
   function timerUpdatePerMinute(){
     if (minutes <= 0){
       setMinutes(60);
-      longNewYear();
+      longTimerUpdate();
     } else {
       setMinutes((prev) => prev - 1);
     }
   }
 
-  if (seconds === null){
+
+  if (isLoading){
     return (
-      <Skeleton
-        sx={{ bgcolor: '#00a86b' }}
-        variant="rectangular"
-        width={210}
-        height={118}
-        animation="wave"
-      />
+      <div className="timer-wrapper">
+        <div className="timer-container">
+          <CircularProgress
+            color="secondary"
+          />
+        </div>
+      </div>
     );
   }
 
   return (
     <div className="timer-wrapper">
       <div className="timer-container">
-        <div className="timer-item">
-          <span className="timer-title">{formatNumber(mounth)}</span>
-          <span className="timer-subtitle">mounth</span>
-        </div>
-        <div className="timer-item">
-          <span className="timer-title">{formatNumber(days)}</span>
-          <span className="timer-subtitle">days</span>
-        </div>
+        {year ?
+          <div className="timer-item">
+            <span className="timer-title">{formatNumber(year)}</span>
+            <span className="timer-subtitle">year</span>
+          </div> :
+          ''}
+        {mounth ?
+          <div className="timer-item">
+            <span className="timer-title">{formatNumber(mounth)}</span>
+            <span className="timer-subtitle">mounth</span>
+          </div> :
+          ''}
+        {days ?
+          <div className="timer-item">
+            <span className="timer-title">{formatNumber(days)}</span>
+            <span className="timer-subtitle">days</span>
+          </div> :
+          ''}
         <div className="timer-item">
           <span className="timer-title">{formatNumber(hours)}</span>
           <span className="timer-subtitle">hours</span>
@@ -97,4 +114,5 @@ function Timer (data: TimerProps):JSX.Element {
 
   );
 }
+
 export default Timer;
