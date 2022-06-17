@@ -6,69 +6,76 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ParkIcon from '@mui/icons-material/Park';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import DateRangeIcon from '@mui/icons-material/DateRange';
+import BackgroundChanger from '../background-changer/background-changer';
 
 function Main():JSX.Element {
+
+
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <Grid
-        container
-        spacing={{ xs: 2, md: 3 }}
-        columns={{ xs: 4, sm: 8, md: 12 }}
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Grid item xs={12}>
-          <Typography align='center' variant="h4" component="h4">
+    <>
+      <BackgroundChanger />
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid
+          container
+          spacing={{ xs: 2, md: 3 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Grid item xs={12}>
+            <Typography align='center' variant="h4" component="h4">
         Сhoose to which you want to count down the time
-          </Typography>
-        </Grid>
-        <Grid item xs="auto">
-          <Button
-            component={RouterLink}
-            to={AppRoute.Valentayne}
-            variant="contained"
-            color="primary"
-            startIcon={<FavoriteIcon/>}
-          >
+            </Typography>
+          </Grid>
+          <Grid item xs="auto">
+            <Button
+              component={RouterLink}
+              to={AppRoute.Valentayne}
+              variant="contained"
+              color="primary"
+              startIcon={<FavoriteIcon color="secondary" />}
+            >
           Valentine Day
-          </Button>
-        </Grid>
-        <Grid item xs="auto">
-          <Button
-            component={RouterLink}
-            to={AppRoute.NewYear}
-            variant="contained"
-            color="primary"
-            startIcon={<ParkIcon />}
-          >
+            </Button>
+          </Grid>
+          <Grid item xs="auto">
+            <Button
+              component={RouterLink}
+              to={AppRoute.NewYear}
+              variant="contained"
+              color="primary"
+              startIcon={<ParkIcon color="secondary" />}
+            >
           New Year
-          </Button>
-        </Grid>
-        <Grid item xs="auto">
-          <Button
-            component={RouterLink}
-            to={AppRoute.Summer}
-            variant="contained"
-            color="primary"
-            startIcon={<WbSunnyIcon />}
-          >
+            </Button>
+          </Grid>
+          <Grid item xs="auto">
+            <Button
+              component={RouterLink}
+              to={AppRoute.Summer}
+              variant="contained"
+              color="primary"
+              startIcon={<WbSunnyIcon color="secondary" />}
+            >
           Beginning of summer
-          </Button>
-        </Grid>
-        <Grid item xs="auto">
-          <Button
-            component={RouterLink}
-            to={AppRoute.CustomData}
-            variant="contained"
-            color="primary"
-            startIcon={<DateRangeIcon />}
-          >
+            </Button>
+          </Grid>
+          <Grid item xs="auto">
+            <Button
+              component={RouterLink}
+              to={AppRoute.CustomData}
+              variant="contained"
+              color="primary"
+              startIcon={<DateRangeIcon color="secondary" />}
+            >
           Choise of you&#39;r date
-          </Button>
+            </Button>
+          </Grid>
         </Grid>
-      </Grid>
-    </Box>
+      </Box>
+    </>
   );
 }
+
 
 export default Main;

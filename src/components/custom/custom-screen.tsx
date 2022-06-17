@@ -1,16 +1,17 @@
 import { Button, TextField, Typography } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers';
 import DateRangeIcon from '@mui/icons-material/DateRange';
-import {  useRef, useState } from 'react';
+import { useState } from 'react';
 import Timer from '../timer/timer';
 import './custom-screen.css';
+import BackgroundChanger from '../background-changer/background-changer';
+
 
 function CustomScreen():JSX.Element {
   const [value, setValue] = useState<string | null>(null);
   const [valuePicker,setValuePicker] = useState<Date | null>(null);
   const [isDisabled, setDisabled] = useState<boolean>(true);
 
-  const dataPickerRef = useRef(null);
   function rechoiseChange(){
     setValue(null);
   }
@@ -21,22 +22,26 @@ function CustomScreen():JSX.Element {
   }
   return (
     <>
+      <BackgroundChanger />
       {!value &&
           <div className='wrapper'>
             <DatePicker
-              label="Basic example"
+              label="Date choise"
               value={valuePicker}
-              ref={dataPickerRef}
               disablePast
               renderInput={(params) => <TextField {...params} />}
               onChange={(newValue) => {
                 setValuePicker(newValue);
               }}
-              onAccept={()=> {
+              onAccept={(evt)=> {
                 setDisabled(false);
               }}
-              onError={() => {
-                setDisabled(true);
+              onError={(evt) => {
+                if(evt === 'invalidDate' || evt === 'disablePast'){
+                  setDisabled(true);
+                } else if(evt === null){
+                  setDisabled(false);
+                }
               }}
             />
             <Button
@@ -55,7 +60,7 @@ function CustomScreen():JSX.Element {
           variant="contained"
           color="primary"
           onClick={rechoiseChange}
-          startIcon={<DateRangeIcon />}
+          startIcon={<DateRangeIcon color="secondary"/>}
           className={'button-back'}
         >
           Rechoice of you&#39;r date

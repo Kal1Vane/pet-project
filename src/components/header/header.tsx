@@ -1,9 +1,20 @@
 import {  Button } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import HomeIcon from '@mui/icons-material/Home';
+import { useAppDispatch } from '../../store';
+import { changeUserTheme } from '../../store/app/app';
+import { useEffect } from 'react';
+import { getScreenUserTheme } from '../../utils/utils';
 
 function Header():JSX.Element {
+  const dispatch = useAppDispatch();
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    dispatch(changeUserTheme(getScreenUserTheme(pathname)));
+  },[pathname]);
+
   return (
     <Button
       component={RouterLink}
@@ -11,7 +22,7 @@ function Header():JSX.Element {
       variant="contained"
       color="primary"
     >
-      <HomeIcon />
+      <HomeIcon color="secondary" />
     </Button>
   );
 }

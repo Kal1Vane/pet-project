@@ -1,15 +1,20 @@
+import { ThemeProvider } from '@emotion/react';
 import { Link, Route, Routes } from 'react-router-dom';
 import { AppRoute } from '../../const';
+import { useAppSelector } from '../../store';
+import { getUserTheme } from '../../store/app/selectors';
+import { getThemeNow } from '../../utils/utils';
 import CustomScreen from '../custom/custom-screen';
 import Header from '../header/header';
 import Main from '../main/main';
 import TimerScreen from '../timer-screen/timer-screen';
-
+import './app.css';
 
 function App(): JSX.Element {
+  const themeApp = useAppSelector(getUserTheme);
 
   return (
-    <>
+    <ThemeProvider theme={getThemeNow(themeApp)}>
       <Header />
       <Routes>
         <Route
@@ -37,7 +42,7 @@ function App(): JSX.Element {
           element={<Link to={AppRoute.Main}>Go Back</Link>}
         />
       </Routes>
-    </>
+    </ ThemeProvider>
   );
 }
 

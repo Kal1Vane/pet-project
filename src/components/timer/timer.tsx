@@ -1,7 +1,8 @@
 import {  CircularProgress } from '@mui/material';
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
-import { DataDay, formatNumber } from '../../const';
+import { DataDay } from '../../const';
+import { formatNumber } from '../../utils/utils';
 import './timer.css';
 
 type TimerProps = {
@@ -91,7 +92,9 @@ function Timer (props: TimerProps):JSX.Element {
       <div className="timer-container">
         {year ?
           <div className="timer-item">
-            <span className="timer-title">{formatNumber(year)}</span>
+            <span className="timer-title">
+              {formatNumber(year)}
+            </span>
             <span className="timer-subtitle">year</span>
           </div> :
           ''}

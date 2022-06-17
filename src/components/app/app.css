@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+#root .MuiButton-root{
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+#root h4{
+  text-shadow: 1px 1px 1px rgba(233, 5, 5, 0.938);
+}

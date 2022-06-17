@@ -2,6 +2,7 @@ import Typography from '@mui/material/Typography/Typography';
 import { Fragment } from 'react';
 import { useLocation } from 'react-router-dom';
 import { AppRoute, DataDay, TextDay } from '../../const';
+import BackgroundChanger from '../background-changer/background-changer';
 import Timer from '../timer/timer';
 
 function TimerScreen () :JSX.Element {
@@ -23,7 +24,8 @@ function TimerScreen () :JSX.Element {
 
   return (
     <Fragment>
-      <Typography color="primary" textAlign={'center'} variant="h4" component="h4">
+      <BackgroundChanger />
+      <Typography  textAlign={'center'} variant="h4" component="h4">
         {text}
       </Typography>
       <Timer data={data} isCustomDate={false} />

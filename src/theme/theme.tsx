@@ -1,44 +1,104 @@
 import { createTheme } from '@mui/material/styles';
 
-export const theme = createTheme({
-  status: {
-    danger: '#e53e3e',
-  },
+
+export const themeValentayne = createTheme({
   palette: {
     primary: {
-      main: '#5e09f1',
-      darker: '#053e85',
-    },
-    neutral: {
-      main: '#64748B',
+      main: '#ed4b82',
       contrastText: '#fff',
+    },
+    secondary : {
+      main: '#fff',
+    },
+    text : {
+      primary : '#fff',
+    },
+  },
+  typography: {
+    allVariants: {
+      color: '#fff',
     },
   },
 });
 
-declare module '@mui/material/styles' {
-  interface Theme {
-    status: {
-      danger: React.CSSProperties['color'];
-    };
-  }
+export const themeNewYear = createTheme({
+  palette: {
+    primary: {
+      main: '#B53F41',
+      contrastText: '#fff',
+    },
+    secondary : {
+      main: '#fff',
+    },
+    text : {
+      primary : '#fff',
+    },
+  },
+  typography: {
+    allVariants: {
+      color: '#fff',
+    },
+  },
+});
 
-  interface Palette {
-    neutral: Palette['primary'];
-  }
-  interface PaletteOptions {
-    neutral: PaletteOptions['primary'];
-  }
+export const themeSummer = createTheme({
+  palette: {
+    primary: {
+      main: '#5AB53F',
+      contrastText: '#fff',
+    },
+    secondary : {
+      main: '#fff',
+    },
+    text : {
+      primary: '#fff',
+    },
+  },
+  typography: {
+    allVariants: {
+      color: '#fff',
+    },
+  },
 
-  interface PaletteColor {
-    darker?: string;
-  }
-  interface SimplePaletteColorOptions {
-    darker?: string;
-  }
-  interface ThemeOptions {
-    status: {
-      danger: React.CSSProperties['color'];
-    };
-  }
-}
+});
+
+export const themeMain = createTheme({
+  palette: {
+    primary: {
+      main: 'rgba(255,157,0,0.64)',
+      contrastText: '#fff',
+    },
+    secondary : {
+      main: '#fff',
+    },
+    text : {
+      primary : '#fff',
+    },
+  },
+  typography: {
+    allVariants: {
+      color: '#fff',
+    },
+  },
+});
+
+export const themeCustom = createTheme({
+  palette: {
+    primary: {
+      main: '#5A34AF',
+      contrastText: '#fff',
+    },
+    secondary : {
+      main: '#fff',
+    },
+    text : {
+      primary : '#5A34AF',
+    },
+  },
+  typography: {
+    allVariants: {
+      color: '#5A34AF',
+    },
+  },
+});
+
