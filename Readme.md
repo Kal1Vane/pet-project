@@ -4,6 +4,7 @@
 * React
 * React Hooks
 * MaterialUI 
+* Redux
 
 # Руководство по работе с проектом
 
